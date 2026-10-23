@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#FAFAF6"/>
+  <path d="M0 568h1200M846 0v630" stroke="#D8DDCF"/>
+  <text x="82" y="106" fill="#495638" font-family="monospace" font-size="15" letter-spacing="2">AI/ML ENGINEER</text>
+  <text x="75" y="259" fill="#20251B" font-family="Arial,sans-serif" font-size="112" font-weight="600" letter-spacing="-6">Anantha Reddy</text>
+  <text x="84" y="343" fill="#20251B" font-family="Arial,sans-serif" font-size="39" font-weight="500" letter-spacing="-1">Building intelligent systems that</text>
+  <text x="84" y="397" fill="#20251B" font-family="Arial,sans-serif" font-size="39" font-weight="500" letter-spacing="-1">turn data into practical decisions.</text>
+  <text x="87" y="478" fill="#53594E" font-family="Arial,sans-serif" font-size="18">Data platforms · Python applications · Applied AI</text>
+  <rect x="900" y="112" width="230" height="360" fill="#F0F1E8" stroke="#D8DDCF"/>
+  <path d="M932 169h166M932 251h166M932 333h166M932 415h166" stroke="#D8DDCF"/>
+  <path d="M951 169v246" stroke="#495638"/>
+  <circle cx="951" cy="169" r="5" fill="#FAFAF6" stroke="#495638" stroke-width="2"/>
+  <circle cx="951" cy="251" r="5" fill="#FAFAF6" stroke="#495638" stroke-width="2"/>
+  <circle cx="951" cy="333" r="5" fill="#FAFAF6" stroke="#495638" stroke-width="2"/>
+  <circle cx="951" cy="415" r="5" fill="#FAFAF6" stroke="#495638" stroke-width="2"/>
+  <circle cx="1098" cy="169" r="4" fill="#495638"/>
+  <circle cx="1098" cy="251" r="4" fill="#495638"/>
+  <circle cx="1098" cy="333" r="4" fill="#495638"/>
+  <circle cx="1098" cy="415" r="4" fill="#495638"/>
+  <path d="M1036 449h36" stroke="#DEE3D2" stroke-width="2"/>
+  <circle cx="1098" cy="449" r="13" fill="#303C25"/>
+  <text x="1093" y="454" fill="#FAFAF6" font-family="monospace" font-size="12" font-weight="700">A</text>
+  <text x="975" y="176" fill="#20251B" font-family="Arial,sans-serif" font-size="16">Sources</text>
+  <text x="975" y="258" fill="#20251B" font-family="Arial,sans-serif" font-size="16">Ingestion</text>
+  <text x="975" y="340" fill="#20251B" font-family="Arial,sans-serif" font-size="16">Transform</text>
+  <text x="975" y="422" fill="#20251B" font-family="Arial,sans-serif" font-size="16">Serving</text>
+  <text x="82" y="600" fill="#626858" font-family="monospace" font-size="12" letter-spacing="1">RELIABILITY · CLARITY · PRACTICAL OUTCOMES</text>
+</svg>

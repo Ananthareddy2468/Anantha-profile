@@ -1,0 +1,19 @@
+﻿---
+const stages = [
+ ['Data', 'Prepare documents, events, and records with validation and traceable inputs.'],
+ ['Context', 'Shape useful features and retrieve relevant source material for downstream systems.'],
+ ['Models', 'Apply machine learning and retrieval-supported AI with reproducible inputs and reviewable outputs.'],
+ ['Applications', 'Connect results to people through clear APIs and useful application workflows.'],
+];
+---
+<aside class="intelligence-flow" aria-labelledby="flow-heading" data-flow data-paused="true">
+<p class="eyebrow">Conceptual illustration · not a production feed</p><h2 id="flow-heading">Intelligence Flow</h2>
+<p class="flow-description">Data → Context → Models → Applications</p>
+<svg viewBox="0 0 400 180" fill="none" role="img" aria-label="Four connected engineering stages: source data becomes context, which supports models and useful applications.">
+<g stroke="currentColor"><path class="flow-path" d="M40 100 C90 10 110 170 150 90 S240 10 260 90 S320 170 360 90"/><path d="M40 100H360" opacity=".2" stroke-dasharray="3 7"/><circle cx="150" cy="90" r="35" opacity=".2"/><rect class="flow-geometry" x="233" y="63" width="54" height="54" transform="rotate(45 260 90)" opacity=".3"/></g>
+{[40,150,260,360].map((x,i) => <g><circle cx={x} cy={i===0 ? 100:90} r="9" fill="var(--surface)" stroke="currentColor"/><circle cx={x} cy={i===0 ? 100:90} r="3" fill="currentColor"/></g>)}
+<circle class="flow-signal" r="4" fill="currentColor"/><circle class="flow-signal flow-signal-delayed" r="3" fill="currentColor"/>
+</svg>
+<div class="flow-stages">{stages.map(([name,detail],i) => <details open={i===0}><summary><span>0{i+1}</span>{name}</summary><p>{detail}</p></details>)}</div>
+<p class="flow-hint">Select a stage to explore its role.</p>
+</aside>

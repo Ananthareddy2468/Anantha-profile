@@ -1,0 +1,40 @@
+---
+import { profile } from '../data/profile';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title = `${profile.name} — ${profile.title}`,
+  description = profile.introduction,
+  canonicalPath = '/',
+} = Astro.props;
+const canonical = Astro.site ? new URL(withBase(canonicalPath), Astro.site) : undefined;
+const socialImage = Astro.site ? new URL(withBase('/social-card.svg'), Astro.site) : undefined;
+---
+
+<title>{title}</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#FAFAF6" />
+<meta name="description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta name="twitter:card" content="summary_large_image" />
+{canonical && <link rel="canonical" href={canonical} />}
+{socialImage && (
+  <>
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content="A conceptual data pipeline and Anantha Reddy portfolio introduction." />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+  </>
+)}
+<link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+
+<script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "Person", name: profile.name, jobTitle: profile.title, description: profile.introduction, ...(canonical ? { url: canonical.href } : {}) }).replace(/</g, "\u003c")} />

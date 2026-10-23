@@ -1,0 +1,292 @@
+---
+import IntelligenceFlow from '../components/IntelligenceFlow.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { expertise } from '../data/expertise';
+import { profile, principles } from '../data/profile';
+import { projects, type ProjectCategory } from '../data/projects';
+import { withBase } from '../utils/paths';
+
+const filters: ('All' | ProjectCategory)[] = [
+  'All',
+  'Data Platforms',
+  'AI/ML',
+  'APIs & Applications',
+];
+
+const journey = [
+  {
+    label: 'Python foundations',
+    summary: 'Diagnostic integrations, Python services, SQL, ETL, and production support.',
+    detail:
+      'Built a foundation in Python application development and system integration, with attention to dependable data exchange and day-to-day support.',
+  },
+  {
+    label: 'Data science & industrial analytics',
+    summary: 'Time-series analysis, feature engineering, Spark pipelines, and predictive modeling.',
+    detail:
+      'Expanded from application data into analytical workflows, exploring operational time series and building reusable processing and dashboard paths.',
+  },
+  {
+    label: 'Cloud applications & public services',
+    summary: 'Backend APIs, React applications, cloud processing, orchestration, and integration.',
+    detail:
+      'Connected application-facing services with distributed data processing, relational systems, and reporting workflows.',
+  },
+  {
+    label: 'Financial ML engineering',
+    summary: 'Reusable features, batch and streaming data, and model lifecycle practices.',
+    detail:
+      'Worked across ingestion, feature processing, validation, inference, tracking, and monitoring for risk-oriented machine learning workflows.',
+  },
+  {
+    label: 'Data platforms & applied AI',
+    summary: 'Databricks, distributed processing, data integration, and recent RAG pipelines.',
+    detail:
+      'Focused on dependable data preparation, cloud operations, secure service boundaries, and applied AI patterns. Retrieval-focused work belongs to this recent stage, not the whole career.',
+  },
+] as const;
+---
+
+<SiteLayout>
+  <section id="top" class="hero-section page-shell" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>{profile.eyebrow}</p>
+      <h1 id="hero-title" class="hero-name">{profile.name}</h1>
+      <p class="hero-title">{profile.title}</p><p class="hero-headline">{profile.headline}</p>
+      <p class="hero-introduction">{profile.introduction}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#work">Explore My Work <span aria-hidden="true">↘</span></a>
+        <a class="text-link" href="#expertise">My Approach <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="hero-meta">
+        <p><span class="meta-label">Experience</span><strong>{profile.yearsExperience} years</strong></p>
+        <p><span class="meta-label">Focus</span><strong>Data systems · Applied AI</strong></p>
+        <p><span class="meta-label">Core technologies</span><strong>Python · PySpark · Databricks · FastAPI</strong></p>
+      </div>
+    </div>
+
+    <IntelligenceFlow />
+    <a class="scroll-cue" href="#work"><span class="scroll-cue-line"></span> Scroll to explore</a>
+  </section>
+
+  <section id="work" class="section-shell work-section" aria-labelledby="work-heading">
+    <div class="section-heading page-shell">
+      <div>
+        <p class="section-index">01 / SELECTED WORK</p>
+        <h2 id="work-heading">Systems built around<br />the data that matters.</h2>
+      </div>
+      <p class="section-intro">Anonymized experience case studies. Each story is intentionally generalized; the detail pages separate supported work from conceptual architecture.</p>
+    </div>
+    <div class="project-toolbar page-shell">
+      <div class="filter-list" role="group" aria-label="Filter case studies" hidden>
+        {filters.map((filter, index) => (
+          <button type="button" class="filter-button" data-filter={filter} aria-pressed={index === 0}>
+            {filter}
+          </button>
+        ))}
+      </div>
+      <p class="filter-count" data-filter-count aria-live="polite">3 featured case studies</p>
+    </div>
+    <div class="project-grid page-shell">
+      {projects.slice(0, 3).map((project) => (
+        <a
+          class="project-card"
+          href={withBase(`/projects/${project.slug}/`)}
+          data-project-card
+          data-categories={project.categories.join('|')}
+        >
+          <div class="project-card-top">
+            <span class="project-number">{project.number} <span aria-hidden="true">/ 03</span></span>
+            <span class="project-arrow" aria-hidden="true">↗</span>
+          </div>
+            <ol class="project-flow" aria-label="Conceptual architecture preview">
+              {project.architecture.slice(0, 4).map((stage, index) => (
+                <li><span>0{index + 1}</span><strong>{stage}</strong></li>
+              ))}
+            </ol>
+            <div class="project-card-body">
+            <p class="card-kicker">{project.cardDetail}</p>
+            <h3>{project.title}</h3>
+            <p class="project-summary">{project.summary}</p>
+          </div>
+          <dl class="project-evidence"><div><dt>My contribution</dt><dd>{project.contribution}</dd></div><div><dt>Engineering consideration</dt><dd>{project.decisions[0].detail}</dd></div><div><dt>Outcome</dt><dd>{project.outcome}</dd></div></dl><div class="tag-row" aria-label="Technologies">{project.stack.slice(0, 4).map((technology) => <span class="tag">{technology}</span>)}</div>
+          <span class="card-read">Read Case Study <span aria-hidden="true">→</span></span>
+        </a>
+      ))}
+    </div>
+    <a class="industrial-highlight page-shell" href={withBase('/projects/industrial-time-series-analytics/')}><span class="section-index">ALSO IN MY WORK</span><strong>Industrial Time-Series Analytics</strong><span>Time-aware preparation, reusable features, and predictive-maintenance exploration.</span><span>Read Case Study</span></a>
+    <p class="no-filter-results page-shell" data-no-results hidden>No case studies match this filter.</p>
+  </section>
+
+  <section id="lab" class="section-shell lab-section" aria-labelledby="lab-heading">
+    <div class="section-heading page-shell">
+      <div>
+        <p class="section-index">A SMALL WORKING DEMONSTRATION</p>
+        <h2 id="lab-heading">Pipeline Explorer</h2>
+      </div>
+      <p class="section-intro">A browser-only walk through ingestion, validation, transformation, and curated output. It uses synthetic records—not Spark, cloud services, or production data.</p>
+    </div>
+    <div class="lab-panel page-shell">
+      <div class="lab-topline">
+        <span class="demo-label"><span class="status-dot" aria-hidden="true"></span> Portfolio demonstration — synthetic data</span>
+        <span class="lab-reference">PYTHON / DATA QUALITY / PIPELINE DESIGN</span>
+      </div>
+      <div class="lab-content">
+        <div class="lab-controls-column">
+          <p class="lab-instruction">Choose a sample, then step through what each stage makes visible.</p>
+          <div class="lab-controls" data-lab-controls hidden>
+            <label class="control-label" for="sample-select">Sample records</label>
+            <select id="sample-select">
+              <option value="issues" selected>Needs attention</option>
+              <option value="clean">Clean sample</option>
+            </select>
+            <fieldset class="validation-rules">
+              <legend>Enforce validation rules</legend>
+              <label><input type="checkbox" data-rule="missing" checked /> Require a category</label>
+              <label><input type="checkbox" data-rule="duplicate" checked /> Keep event IDs unique</label>
+              <label><input type="checkbox" data-rule="invalid" checked /> Require a numeric reading</label>
+            </fieldset>
+            <div class="lab-actions">
+              <button class="button button-quiet" type="button" data-step-back disabled>Previous</button>
+              <button class="button button-primary" type="button" data-step-forward>Next stage <span aria-hidden="true">→</span></button>
+              <button class="button button-quiet" type="button" data-reset-pipeline>Reset example</button>
+            </div>
+          </div>
+          <noscript>
+            <p class="noscript-note">The interactive controls need JavaScript. The synthetic-data explanation and example below remain available without it.</p>
+          </noscript>
+          <p class="lab-status" data-pipeline-status aria-live="polite">Four stages: ingest source events, validate fields and identifiers, transform values, and curate a consumer-ready view.</p>
+          <div class="rule-outcomes" data-rule-outcomes aria-label="Validation rule outcomes"></div>
+        </div>
+        <div class="lab-stage-column">
+          <div class="stage-progress" aria-label="Pipeline stages">
+            <span data-stage-indicator="0" aria-current="step">01 Ingest</span>
+            <span data-stage-indicator="1">02 Validate</span>
+            <span data-stage-indicator="2">03 Transform</span>
+            <span data-stage-indicator="3">04 Curate</span>
+          </div>
+          <div class="stage-summary">
+            <div><p class="section-index" data-stage-name>STAGE 01 / INGEST</p><h3 data-stage-title>Inspect the incoming records</h3></div>
+            <p class="row-count" data-row-count>— <span>records</span></p>
+          </div>
+          <p class="stage-description" data-stage-description>Incoming records are synthetic event examples with an identifier, category, timestamp, and reading.</p>
+          <div class="comparison-tables">
+            <div class="table-scroll">
+              <table class="pipeline-table">
+                <caption>Before · synthetic source records</caption>
+                <thead><tr><th scope="col">Event</th><th scope="col">Category</th><th scope="col">Timestamp</th><th scope="col">Reading</th></tr></thead>
+                <tbody data-pipeline-input-rows>
+                  <tr><td>EVT-001</td><td>vibration</td><td>2026-10-22 09:00</td><td>18.4</td></tr>
+                  <tr><td>EVT-002</td><td>temperature</td><td>2026-10-22 09:05</td><td>21.2</td></tr>
+                  <tr><td>EVT-003</td><td>pressure</td><td>2026-10-22 09:10</td><td>7.8</td></tr>
+                  <tr><td>EVT-004</td><td>vibration</td><td>2026-10-22 09:15</td><td>19.1</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-scroll">
+              <table class="pipeline-table">
+                <caption data-output-caption>After · clean curated example</caption>
+                <thead><tr><th scope="col">Event</th><th scope="col">Category</th><th scope="col">Timestamp</th><th scope="col">Reading</th></tr></thead>
+                <tbody data-pipeline-output-rows>
+                  <tr><td>EVT-001</td><td>VIBRATION</td><td>2026-10-22 09:00</td><td>18.4</td></tr>
+                  <tr><td>EVT-002</td><td>TEMPERATURE</td><td>2026-10-22 09:05</td><td>21.2</td></tr>
+                  <tr><td>EVT-003</td><td>PRESSURE</td><td>2026-10-22 09:10</td><td>7.8</td></tr>
+                  <tr><td>EVT-004</td><td>VIBRATION</td><td>2026-10-22 09:15</td><td>19.1</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table-footnote" data-table-note>All values are synthetic and fixed for repeatable inspection.</div>
+        </div>
+      </div>
+      <div class="lab-principle">
+        <span class="principle-mark" aria-hidden="true">↳</span>
+        <p><strong>Why this matters</strong> A small, explicit contract makes quality decisions visible. In a real system, validation rules should reflect source meaning, downstream needs, and a documented recovery path.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="expertise" class="section-shell expertise-section" aria-labelledby="expertise-heading">
+    <div class="section-heading page-shell">
+      <div>
+        <p class="section-index">02 / EXPERTISE</p>
+        <h2 id="expertise-heading">A connected engineering toolkit.</h2>
+      </div>
+      <p class="section-intro">Grouped by the problems I work on—not by percentage bars. Depth varies across tools and reflects different project contexts.</p>
+    </div>
+    <div class="expertise-grid page-shell">
+      {expertise.map((group, index) => (
+        <article class="expertise-item">
+          <span class="expertise-index">0{index + 1}</span>
+          <div class="expertise-copy">
+            <h3>{group.title}</h3>
+            <p>{group.description}</p>
+            <ul class="skill-list" aria-label={`${group.title} technologies`}>
+              {group.skills.map((skill) => <li>{skill}</li>)}
+            </ul>
+            <div class="expertise-links">
+              <span>Related work</span>
+              {group.projects.map((slug) => {
+                const project = projects.find((item) => item.slug === slug);
+                return project && <a href={withBase(`/projects/${project.slug}/`)}>{project.title} <span aria-hidden="true">↗</span></a>;
+              })}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="approach-block page-shell"><h3>My engineering approach</h3><ol class="principles-list">
+        {principles.map((principle, index) => (
+          <li><span>0{index + 1}</span><div><h3>{principle.title}</h3><p>{principle.description}</p></div></li>
+        ))}
+      </ol></div>
+    <p class="expertise-note page-shell">Technology names reflect experience across different projects and listed skills, not equal depth or production ownership of every tool.</p>
+  </section>
+
+  <section id="journey" class="section-shell journey-section" aria-labelledby="journey-heading">
+    <div class="section-heading page-shell">
+      <div>
+        <p class="section-index">03 / JOURNEY</p>
+        <h2 id="journey-heading">A career built in layers.</h2>
+      </div>
+      <p class="section-intro">From Python services to distributed data and recent AI-enabled systems—each chapter added a new part of the stack.</p>
+    </div>
+    <div class="career-about page-shell"><p>{profile.about}</p><div class="education-list">{profile.degrees.map((degree) => <span>{degree}</span>)}</div></div>
+    <ol class="journey-list page-shell">
+      {journey.map((stage, index) => (
+        <li class="journey-item">
+          <span class="journey-marker" aria-hidden="true">0{index + 1}</span>
+          <details>
+            <summary>
+              <span class="journey-title">{stage.label}</span>
+              <span class="journey-summary">{stage.summary}</span>
+              <span class="journey-plus" aria-hidden="true">+</span>
+            </summary>
+            <p>{stage.detail}</p>
+          </details>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+
+
+  <section id="contact" class="section-shell contact-section" aria-labelledby="contact-heading">
+    <div class="contact-inner page-shell">
+      <div>
+        <p class="section-index">05 / CONTACT</p>
+        <h2 id="contact-heading">Let’s talk about systems that serve a purpose.</h2>
+        <p>Open to a thoughtful conversation about data platforms, applied AI, or Python engineering.</p>
+      </div>
+      {profile.contact.email || profile.contact.linkedin || profile.contact.github ? (
+        <div class="contact-links">
+          {profile.contact.email && <a class="button button-primary" href={`mailto:${profile.contact.email}`}>Email me <span aria-hidden="true">↗</span></a>}
+          {profile.contact.linkedin && <a href={profile.contact.linkedin} rel="me">LinkedIn <span aria-hidden="true">↗</span></a>}
+          {profile.contact.github && <a href={profile.contact.github} rel="me">GitHub <span aria-hidden="true">↗</span></a>}
+        </div>
+      ) : (
+        <p class="contact-unconfigured">Professional contact links are not published yet.</p>
+      )}
+    </div>
+  </section>
+</SiteLayout>

@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { withBase } from '../utils/paths';
+---
+
+<SiteLayout title="Page not found — Anantha Reddy" description="The page you requested could not be found.">
+  <section class="not-found page-shell">
+    <p class="section-index">404 / NOT FOUND</p>
+    <h1>This path didn’t make it through the pipeline.</h1>
+    <p>The page may have moved. The work and the rest of the portfolio are still here.</p>
+    <a class="button button-primary" href={withBase('/')}>Return home <span aria-hidden="true">↗</span></a>
+  </section>
+</SiteLayout>

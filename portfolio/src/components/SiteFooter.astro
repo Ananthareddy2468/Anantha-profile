@@ -1,0 +1,13 @@
+---
+import { profile } from '../data/profile';
+import { withBase } from '../utils/paths';
+---
+
+<footer class="site-footer">
+  <div class="page-shell footer-inner">
+    <a class="footer-mark" href={withBase('/')} aria-label="Anantha Reddy — home">AR</a>
+    <p>Thoughtful systems. Useful outcomes.</p>
+    <p class="footer-note">© {new Date().getFullYear()} {profile.name}</p>
+    <a class="back-to-top" href={withBase('/#top')}>Back to top <span aria-hidden="true">↑</span></a>
+  </div>
+</footer>

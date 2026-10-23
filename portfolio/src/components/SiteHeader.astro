@@ -1,0 +1,38 @@
+---
+import { withBase } from '../utils/paths';
+
+const links = [
+  { label: 'Work', href: withBase('/#work') },
+  { label: 'Expertise', href: withBase('/#expertise') },
+  { label: 'Journey', href: withBase('/#journey') },
+  { label: 'Explorer', href: withBase('/#lab') },
+  { label: 'Contact', href: withBase('/#contact') },
+];
+---
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner page-shell">
+    <a class="site-brand" href={withBase('/')} aria-label="Anantha Reddy — home">
+      <span class="monogram" aria-hidden="true">AR</span>
+      <span class="brand-name">ANANTHA REDDY</span>
+    </a>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      aria-label="Open navigation"
+      hidden
+    >
+      <span></span><span></span>
+    </button>
+    <nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <button class="effects-toggle" type="button" aria-pressed="false" hidden>
+      <span class="effects-indicator" aria-hidden="true"></span>
+      <span class="effects-label">Motion on</span>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,88 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { projects } from '../../data/projects';
+import { withBase } from '../../utils/paths';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<SiteLayout
+  title={`${project.title} — Anantha Reddy`}
+  description={project.summary}
+  canonicalPath={`/projects/${project.slug}/`}
+>
+  <article class="case-study page-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={withBase('/#work')}>Selected work</a><span aria-hidden="true">/</span><span>{project.title}</span>
+    </nav>
+    <header class="case-hero">
+      <div>
+        <p class="section-index">EXPERIENCE CASE STUDY / {project.number}</p>
+        <h1>{project.title}</h1>
+        <p class="case-lede">{project.summary}</p>
+      </div>
+      <div class="privacy-chip"><span aria-hidden="true">◌</span> Anonymized experience</div>
+    </header>
+    <div class="case-architecture">
+      <div class="case-architecture-heading"><span>CONCEPTUAL RECONSTRUCTION</span><span>NOT A CONFIRMED SINGLE DEPLOYMENT</span></div>
+      <ol class="architecture-flow">
+        {project.architecture.map((stage, index) => (
+          <li><span>0{index + 1}</span><strong>{stage}</strong></li>
+        ))}
+      </ol>
+    </div>
+    <div class="case-content">
+      <section class="case-narrative" aria-labelledby="problem-heading">
+        <div class="case-copy-block">
+          <p class="section-index">01 / THE CONTEXT</p>
+          <h2 id="problem-heading">The problem space</h2>
+          <p>{project.problem}</p>
+        </div>
+        <div class="case-copy-block">
+          <p class="section-index">02 / MY CONTRIBUTION</p>
+          <h2>Engineering the path</h2>
+          <p>{project.contribution}</p>
+        </div>
+        <div class="case-copy-block">
+          <p class="section-index">03 / ENGINEERING DECISIONS</p>
+          <h2>Principles for dependable systems</h2>
+          <div class="decision-list">
+            {project.decisions.map((decision, index) => (
+              <article><span>0{index + 1}</span><div><h3>{decision.title}</h3><p>{decision.detail}</p></div></article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <aside class="case-aside">
+        <div class="case-aside-block">
+          <p class="section-index">RELIABILITY & SECURITY</p>
+          <p>{project.reliability}</p>
+        </div>
+        <div class="case-aside-block">
+          <p class="section-index">QUALITATIVE OUTCOME</p>
+          <p>{project.outcome}</p>
+        </div>
+        <div class="case-aside-block">
+          <p class="section-index">TECHNOLOGY CONTEXT</p>
+          <ul class="case-stack">{project.stack.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div class="privacy-note">
+          <span class="privacy-symbol" aria-hidden="true">◌</span>
+          <p><strong>Privacy note</strong> {project.title} is an anonymized summary of experience, not a client endorsement. Names, records, endpoints, configurations, and internal project details are omitted. The flow above is a conceptual reconstruction.</p>
+        </div>
+      </aside>
+    </div>
+    <div class="case-next">
+      <p class="section-index">CONTINUE EXPLORING</p>
+      <a class="button button-quiet" href={withBase('/#work')}>All case studies <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href={withBase('/#contact')}>Start a conversation <span aria-hidden="true">↗</span></a>
+    </div>
+  </article>
+</SiteLayout>
